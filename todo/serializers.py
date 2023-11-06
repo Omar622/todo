@@ -11,4 +11,5 @@ class TodoSerializer(serializers.ModelSerializer):
         Meta class for specifying the model and fields to be serialized.
         """
         model = Todo
-        fields = ['id', 'title', 'content', 'is_completed']
+        fields = ['id', 'title', 'content',
+                  'is_completed', 'created_at', 'updated_at']
