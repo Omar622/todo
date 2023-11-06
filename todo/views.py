@@ -1,7 +1,7 @@
 from rest_framework import viewsets, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Todo
 from .serializers import TodoSerializer
-from django_filters.rest_framework import DjangoFilterBackend
 
 
 class TodoViewSet(viewsets.ModelViewSet):
@@ -15,4 +15,4 @@ class TodoViewSet(viewsets.ModelViewSet):
                        filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['title', 'is_completed']
     search_fields = ['title', 'content']
-    ordering_fields = ['title']
+    ordering_fields = ['updated_at']
