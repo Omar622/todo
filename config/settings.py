@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'todo',
-    'user'
+    'user',
+    'jwt_decorated'
 ]
 
 AUTH_USER_MODEL = "user.User"

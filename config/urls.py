@@ -19,12 +19,13 @@ from django.contrib import admin
 from django.urls import path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+
 from todo.views import TodoViewSet
 from user.views import UserViewSet
+from jwt_decorated.views import (
+    DecoratedTokenObtainPairView,
+    DecoratedTokenRefreshView
+)
 
 router = routers.DefaultRouter()
 router.register(r'todos', TodoViewSet)
@@ -47,10 +48,12 @@ urlpatterns = [
          cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc',
          cache_timeout=0), name='schema-redoc'),
-    
-    path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    
+
+    path('auth/login/', DecoratedTokenObtainPairView.as_view(),
+         name='token_obtain_pair'),
+    path('auth/token/refresh/',
+         DecoratedTokenRefreshView.as_view(), name='token_refresh'),
+
     path('admin/', admin.site.urls),
 ]
 
