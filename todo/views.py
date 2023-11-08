@@ -1,5 +1,6 @@
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated
 from .models import Todo
 from .serializers import TodoSerializer
 
@@ -16,3 +17,5 @@ class TodoViewSet(viewsets.ModelViewSet):
     filterset_fields = ['title', 'is_completed']
     search_fields = ['title', 'content']
     ordering_fields = ['updated_at']
+
+    permission_classes = [IsAuthenticated]
